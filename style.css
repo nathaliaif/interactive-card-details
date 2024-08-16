@@ -51,6 +51,9 @@ header {
     position: absolute;
     top: 10rem;
     left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 75%;
     height: 11em;
     background: url('images/bg-card-front.png');
@@ -72,13 +75,12 @@ header {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    position: absolute;
-    bottom: 1.5rem;
+    position: relative;
     letter-spacing: 1.5px;
 }
 
 #card-front__number {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .card-front__info {
@@ -119,11 +121,16 @@ main {
         font-size: 1rem;
         color: var(--light-gray);
     }
+
+    &:focus {
+        border: 1px solid var(--dark-violet);
+    }
 }
 
 .form__double-info {
     display: flex;
     column-gap: 1rem;
+    width: 100%;
 }
 
 .form__double-info__expiration {
@@ -149,6 +156,7 @@ main {
 
 .form__double-info__cvc {
     align-self: flex-end;
+    width: 100%;
 }
 
 .button {
