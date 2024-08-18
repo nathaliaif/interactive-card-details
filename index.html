@@ -14,51 +14,55 @@
 <body>
   <header>
     <img src="images/bg-main-mobile.png" alt="" class="header-bg">
-    <div class="card-back">
-      <p id="card-back__cvc"></p>
-    </div>
-    <div class="card-front">
-      <img src="./images/card-logo.svg" alt="">
-      <div class="card-front__texts">
-        <p id="card-front__number">0000 0000 0000 0000</p>
-        <p class="card-front__info">
-          <span class="card-front__info__name">Jane Appleseed</span>
-          <span class="card-front__info__expiry">00/00</span>
-        </p>
+    <div class="cards-container">
+      <div class="card card-back">
+        <p id="card-back__cvc"></p>
       </div>
-    </div >
+      <div class="card card-front">
+        <img src="./images/card-logo.svg" alt="">
+        <div class="card-front__texts">
+          <p id="card-front__number">0000 0000 0000 0000</p>
+          <p class="card-front__info">
+            <span class="card-front__info__name">Jane Appleseed</span>
+            <span class="card-front__info__expiry">00/00</span>
+          </p>
+        </div>
+      </div >
+    </div>
   </header>
 
   <main>
-    <form action="" class="form-card">
-      <label for="cardholder-name">Cardholder Name</label>
-      <input type="text" id="cardholder-name" placeholder="e.g Jane Appleseed">
-  
-      <label for="card-number">Card Number</label>
-      <input type="text" id="card-number" placeholder="e.g. 1234 5678 9123 0000" class="form-card__input-number">
-      
-      <div class="form__double-info">
-        <div class="form__double-info__expiration">
-          <label id="card-expiration">Exp. Date (MM/YY)</label>
-          <input type="text" id="expiration-month" placeholder="MM" maxlength="2" aria-labelledby="card-expiration" class="form-card__input-number">
-          <input type="text" id="expiration-year" placeholder="YY" maxlength="2" aria-labelledby="card-expiration" class="form-card__input-number">
+    <div class="main-container">
+      <form action="" class="form-card">
+        <label for="cardholder-name">Cardholder Name</label>
+        <input type="text" id="cardholder-name" placeholder="e.g Jane Appleseed">
+    
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" placeholder="e.g. 1234 5678 9123 0000" class="form-card__input-number">
+        
+        <div class="form__double-info">
+          <div class="form__double-info__expiration">
+            <label id="card-expiration">Exp. Date (MM/YY)</label>
+            <input type="text" id="expiration-month" placeholder="MM" maxlength="2" aria-labelledby="card-expiration" class="form-card__input-number">
+            <input type="text" id="expiration-year" placeholder="YY" maxlength="2" aria-labelledby="card-expiration" class="form-card__input-number">
+          </div>
+          <div class="form__double-info__cvc">
+            <label for="card-cvc">CVC</label>
+            <input type="text" id="card-cvc" placeholder="e.g. 123" maxlength="3" class="form-card__input-number">
+          </div>
         </div>
-        <div class="form__double-info__cvc">
-          <label for="card-cvc">CVC</label>
-          <input type="text" id="card-cvc" placeholder="e.g. 123" maxlength="3" class="form-card__input-number">
-        </div>
-      </div>
+    
+        <button class="button">Confirm</button>
+      </form>
   
-      <button class="button">Confirm</button>
-    </form>
-
-    <!-- Completed state start -->
-     <div class="complete-container">
-       <img src="./images/icon-complete.svg" alt="">
-      <h1>Thank you!</h1>
-      <p>We've added your card details</p>
-      <a href="" class="button">Continue</a>
-     </div>
+      <!-- Completed state start -->
+       <div class="complete-container">
+         <img src="./images/icon-complete.svg" alt="">
+        <h1>Thank you!</h1>
+        <p>We've added your card details</p>
+        <a href="" class="button">Continue</a>
+       </div>
+    </div>
   </main>
 
   <footer class="attribution">

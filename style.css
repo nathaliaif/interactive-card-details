@@ -26,44 +26,56 @@ html {
 
 header {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header-bg {
     background-image: url('images/bg-main-mobile.png');
     object-fit: cover;
     width: 100%;
-    height: 17em;
+    height: 16em;
     z-index: -1;
 }
 
-.card-back {
+.cards-container {
     position: absolute;
-    top: 2rem;
-    right: 1.5rem;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    position: absolute;
     width: 75%;
     height: 11em;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+    -moz-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+    box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+}
+
+.card-back {
+    top: 2rem;
+    right: 1.5rem;
     background: url('images/bg-card-back.png');
     background-size: cover;
-    border-radius: 10px;
 }
 
 .card-front {
-    position: absolute;
-    top: 10rem;
+    top: 7rem;
     left: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 75%;
-    height: 11em;
     background: url('images/bg-card-front.png');
     background-size: cover;
-    border-radius: 10px;
     padding: 1.5rem;
-    -webkit-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.43);
-    -moz-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.43);
-    box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.43);
-
     color: var(--white);
 }
 
@@ -91,11 +103,19 @@ header {
     text-transform: uppercase;
 }
 
+
+/* --- Main Container ---- */
+
 main {
-    margin-top: 5rem;
-    padding: 2rem;
+    margin-top: 4rem;
+    padding: 4rem 2rem 2rem 2rem;
     height: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
+
+
+/* ---- Card Details Form ---- */
 
 .form-card {
     display: flex;
@@ -138,7 +158,7 @@ main {
     grid-template-areas:
         "label label"
         "month year";
-    width: 70%;
+    width: 80%;
     column-gap: 0.5rem;
 }
 
@@ -162,13 +182,17 @@ main {
 .button {
     margin-top: 1rem;
     width: 100%;
-    padding: 1rem;
+    padding: 1.1rem;
     font-size: 1rem;
     color: var(--white);
     text-align: center;
     border-radius: 7px;
     background-color: var(--dark-violet);
     transition: 0.3s;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 /* ---- Complete Container ---- */
@@ -186,6 +210,15 @@ main {
     margin-bottom: 1rem;
 }
 
+.complete-container h1 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.complete-container p{
+    font-size: 1.3rem;
+}
+
 .complete-container a {
     text-decoration: none;
     transition: 0.3s;
@@ -194,11 +227,12 @@ main {
 .attribution {
     float: bottom;
     position: relative;
+    width: 100%;
     bottom: 0;
     padding: 1rem 1rem;
     border-top: 1.5px solid var(--light-gray);
+    background-color: var(--white);
     color: var(--dark-gray);
-    /* background-color: var(--light-gray); */
     text-align: center;
 }
 
@@ -206,4 +240,97 @@ main {
     text-decoration: none;
     color: var(--dark-violet);
     transition: 0.3s;
+}
+
+@media screen and (min-width: 450px){
+    .cards-container {
+        width: 29rem;
+    }
+    
+    .card-back {
+        margin-left: 5rem;
+        width: 290px;
+    }
+    
+    .card-front {
+        margin-right: 5rem;
+        width: 290px;
+    }
+
+    main {
+        margin-top: 3rem;
+        padding: 2rem 2rem 3.5rem 2rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    body {
+        flex-direction: row;
+    }
+
+    header {
+        width: 45%;
+        align-items: center;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    
+    .header-bg {
+        position: absolute;
+        left: 0;
+        height: 100vh;
+        width: 70%;
+    }
+
+    .cards-container {
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        row-gap: 2rem;
+        padding: 0;
+    }
+
+    .card {      
+        position: relative;
+        width: 350px;
+        height: 12.5em;
+        border-radius: 10px;
+    }
+    
+    .card-back {
+        top: 0;
+    }
+    
+    .card-front {
+        top: 0;
+        margin-right: 13rem;
+    }
+
+    main {
+        margin-top: 0;
+        margin-right: 15rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding-left: 8rem;
+    }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        width: 600px;
+    }
+
+    .complete-container{ 
+        left: 0;
+    }
+
+    .attribution {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
 }
