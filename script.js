@@ -10,38 +10,39 @@ const continueContainer = document.querySelector('.complete-container');
 const btnConfirm = document.getElementById('btn-confirm');
 const btnContinue = document.getElementById('btn-continue');
 
+const displayDefaultValue = {
+  'card-number': '0000 0000 0000 0000',
+  'cardholder-name': 'Jane Appleseed',
+  'expiration-month': '00',
+  'expiration-year': '00',
+  'card-cvc': '000'
+}
+
 // ---- Update display card when input has value ----
 function syncInputToDisplay(input){
   const displayElement = document.querySelector(`#card-front__${input.id}`);
 
   if (displayElement){
     let formattedValue;
-    let defaultValue;
 
     switch(input.id){
       case 'card-number':
         formattedValue = formatCardNumber(input.value);
-        defaultValue = '0000 0000 0000 0000';
         break;
         case 'cardholder-name':
           formattedValue = formatCardholderName(input.value);
-          defaultValue = 'Jane Appleseed';
         break;
       case 'expiration-month':
       case 'expiration-year':
-        formattedValue = input.value;
-        defaultValue = '00';
-        break;
       case 'card-cvc':
         formattedValue = input.value;
-        defaultValue = '000';
         break;
       default: 
         formattedValue = input.value;
         defaultValue = '';
     }
 
-    displayElement.textContent = formattedValue || defaultValue;
+    displayElement.textContent = formattedValue || displayDefaultValue[input.id];
   }
 }
 
