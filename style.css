@@ -55,12 +55,9 @@ header {
     width: 75%;
     height: 11em;
     border-radius: 10px;
-    -webkit-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
-    -moz-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
-    box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
 }
 
-.card-back {
+.card-secondary {
     top: 2rem;
     right: 1.5rem;
     background: url('images/bg-card-back.png');
@@ -68,21 +65,65 @@ header {
     background-size: cover;
 }
 
-.card-front {
+.card-main {
     top: 7rem;
     left: 1.5rem;
+    color: var(--white);
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+    -moz-box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+    box-shadow: 10px 10px 82px -11px rgba(0,0,0,0.30);
+}
+
+.card-main:hover .flip-card-inner,
+.card-main.flipped .flip-card-inner {
+    transform: rotateY(180deg);    
+}
+
+.card-main__front {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: url('images/bg-card-front.png');
+    padding: 1.5rem;
+    border-radius: 10px;
+
+    img {
+        width: 3rem; 
+    }
+}
+
+.card-main__back {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: url('images/bg-card-back.png');
     background-position: center;
     background-size: cover;
     padding: 1.5rem;
-    color: var(--white);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    transform: rotateY(180deg);
 }
 
-.card-front img {
-    width: 3rem;
+.card-main__front, .card-main__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
 }
 
 .card-front__texts {
@@ -184,6 +225,7 @@ main {
 }
 
 .button {
+    position: relative;
     margin-top: 1rem;
     width: 100%;
     padding: 1.1rem;
@@ -196,33 +238,34 @@ main {
     overflow: hidden;
     transition: 0.3s;
 
-    &:hover {
+    &:hover{
         cursor: pointer;
     }
-}
 
-.cursor-gradient-tracking::before {
-    --size: 0;
-    content: "";
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: var(--size);
-    height: var(--size);
-    background: radial-gradient(circle closest-side, #630790, transparent);
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.2s ease,
-      height 0.2s ease;
-}
+    &::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 1;
+        border-radius: inherit;
+        transition: opacity 0.3s;
+        background: url('images/bg-card-front.png');
+        background-position: center;
+        background-size: cover;
+    }
 
-.cursor-gradient-tracking:hover::before {
-    --size: 200px;
-}
+    &:hover::after {
+        opacity: 0.5;
+      }
 
-.button span {
-    position: relative;
-    z-index: 2;
+    span {
+        position: relative;
+        z-index: 2;
+    }
 }
 
 /* .error-message {
@@ -296,14 +339,16 @@ main {
         width: 29rem;
     }
     
-    .card-back {
-        margin-left: 5rem;
+    .card {
         width: 290px;
     }
+
+    .card-back {
+        margin-left: 5rem;
+    }
     
-    .card-front {
+    .card-main {
         margin-right: 5rem;
-        width: 290px;
     }
 
     main {
@@ -347,13 +392,17 @@ main {
         border-radius: 10px;
     }
     
-    .card-back {
+    .card-secondary {
         top: 0;
     }
     
-    .card-front {
+    .card-main {
         top: 0;
         margin-right: 13rem;
+    }
+
+    .card-main__back {
+        padding: 2.5rem;
     }
 
     #card-front__number {

@@ -16,17 +16,23 @@
   <header>
     <img src="images/bg-main-mobile.png" alt="" class="header-bg">
     <div class="cards-container">
-      <div class="card card-back">
-        <p id="card-back__cvc"></p>
+      <div class="card card-secondary">
       </div>
-      <div class="card card-front">
-        <img src="./images/card-logo.svg" alt="">
-        <div class="card-front__texts">
-          <p id="card-front__card-number">0000 0000 0000 0000</p>
-          <p class="card-front__info">
-            <span class="card-front__info__name" id="card-front__cardholder-name">Jane Appleseed</span>
-            <span class="card-front__info__expiry"><span id="card-front__expiration-month">00</span>/<span id="card-front__expiration-year">00</span></span>
-          </p>
+      <div class="card card-main">
+        <div class="flip-card-inner">
+          <div class="card-main__front">
+            <img src="./images/card-logo.svg" alt="">
+            <div class="card-front__texts">
+              <p id="card-front__card-number">0000 0000 0000 0000</p>
+              <p class="card-front__info">
+                <span class="card-front__info__name" id="card-front__cardholder-name">Jane Appleseed</span>
+                <span class="card-front__info__expiry"><span id="card-front__expiration-month">00</span>/<span id="card-front__expiration-year">00</span></span>
+              </p>
+            </div>
+          </div>
+          <div class="card-main__back">
+            <p id="card-front__card-cvc">000</p>
+          </div>
         </div>
       </div >
     </div>
@@ -57,7 +63,7 @@
           </div>
         </div>
     
-        <button class="button cursor-gradient-tracking"><span>Confirm</span></button>
+        <a class="button cursor-gradient-tracking"><span>Confirm</span></a>
       </form>
   
       <!-- Completed state start -->

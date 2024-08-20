@@ -1,14 +1,8 @@
 const inputList = document.querySelectorAll('input');
-let button = document.querySelector(".cursor-gradient-tracking");
+const inputCvc = document.getElementById('card-cvc');
 
-// ---- Gradient follow cursor on hover ----
-button.addEventListener("mousemove", (e) => {
-  let rect = e.target.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  let y = e.clientY - rect.top;
-  button.style.setProperty("--x", x + "px");
-  button.style.setProperty("--y", y + "px");
-});
+const flipCard = document.querySelector('.flip-card-inner');
+const cardMain = document.querySelector('.card-main');
 
 
 // ---- Update display card when input has value ----
@@ -34,7 +28,7 @@ function syncInputToDisplay(input){
         defaultValue = '00';
         break;
       case 'card-cvc':
-        // formattedValue = input.value;
+        formattedValue = input.value;
         defaultValue = '000';
         break;
       default: 
@@ -105,3 +99,14 @@ item.addEventListener('paste', e => {
 })
 
 })
+
+
+// ---- Flip card when writing CVC ----
+
+inputCvc.addEventListener('focus', () => {
+  cardMain.classList.add('flipped');
+});
+
+inputCvc.addEventListener('blur', () => {
+  cardMain.classList.remove('flipped');
+});
