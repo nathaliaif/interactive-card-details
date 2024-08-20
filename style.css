@@ -123,6 +123,7 @@ main {
 }
 
 .form-card label {
+    margin-top: 1rem;
     font-size: 0.9rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -134,8 +135,9 @@ main {
     border: 1px solid var(--light-gray);
     border-radius: 5px;
     padding: 1rem;
-    margin: 0.3rem 0 1.5rem 0;
+    margin: 0.5rem 0 1rem 0;
     font-size: 1rem;
+    transition: 0.3s;
 
     &::placeholder {
         font-size: 1rem;
@@ -188,12 +190,53 @@ main {
     text-align: center;
     border-radius: 7px;
     background-color: var(--dark-violet);
+    border: none;
+    overflow: hidden;
     transition: 0.3s;
 
     &:hover {
         cursor: pointer;
     }
 }
+
+.cursor-gradient-tracking::before {
+    --size: 0;
+    content: "";
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle closest-side, #630790, transparent);
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.2s ease,
+      height 0.2s ease;
+}
+
+.cursor-gradient-tracking:hover::before {
+    --size: 200px;
+}
+
+.button span {
+    position: relative;
+    z-index: 2;
+}
+
+/* .error-message {
+    color: var(--red);
+    font-size: 12px;
+    margin: 0.5rem 0 1.5rem 0;
+    height: 1.5rem;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
+.error-message.visible {
+    visibility: visible;
+    opacity: 1;
+} */
 
 /* ---- Complete Container ---- */
 
@@ -307,6 +350,10 @@ main {
         margin-right: 13rem;
     }
 
+    #card-front__number {
+        font-size: 1.5rem;
+    }
+
     main {
         margin-top: 0;
         margin-right: 15rem;
@@ -321,6 +368,11 @@ main {
         display: flex;
         justify-content: center;
         width: 600px;
+    }
+
+
+    .form-card input {
+        margin: 0.5rem 0 1.8rem 0;
     }
 
     .complete-container{ 
