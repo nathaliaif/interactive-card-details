@@ -46,6 +46,11 @@ function syncInputToDisplay(input){
   }
 }
 
+function displayBackToDefault(input) {
+  const displayElement = document.querySelector(`#card-front__${input.id}`);
+  displayElement.textContent = displayDefaultValue[input.id];
+}
+
 // Add function syncInputToDisplay to every input
 inputList.forEach(input => {
   input.addEventListener('input', () => {
@@ -130,6 +135,11 @@ btnConfirm.addEventListener('click', () => {
 })
 
 btnContinue.addEventListener('click', () => {
+  inputList.forEach(input => {
+    input.textContent = '';
+    displayBackToDefault(input);
+  })
+
   gsap.to(continueContainer, {duration: 0.5, opacity: 0, ease: "power3.out"});
     
     setTimeout(() => {
