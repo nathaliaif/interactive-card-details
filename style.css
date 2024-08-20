@@ -64,6 +64,7 @@ header {
     top: 2rem;
     right: 1.5rem;
     background: url('images/bg-card-back.png');
+    background-position: center;
     background-size: cover;
 }
 
@@ -74,6 +75,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     background: url('images/bg-card-front.png');
+    background-position: center;
     background-size: cover;
     padding: 1.5rem;
     color: var(--white);
@@ -283,6 +285,10 @@ main {
     text-decoration: none;
     color: var(--dark-violet);
     transition: 0.3s;
+
+    &:hover {
+        color: #d05ab0;
+    }
 }
 
 @media screen and (min-width: 450px){
@@ -372,7 +378,7 @@ main {
 
 
     .form-card input {
-        margin: 0.5rem 0 1.8rem 0;
+        margin: 0.5rem 0 1.2rem 0;
     }
 
     .complete-container{ 

@@ -1,5 +1,7 @@
+const inputList = document.querySelectorAll('input');
 let button = document.querySelector(".cursor-gradient-tracking");
 
+// ---- Gradient follow cursor on hover ----
 button.addEventListener("mousemove", (e) => {
   let rect = e.target.getBoundingClientRect();
   let x = e.clientX - rect.left;
@@ -8,7 +10,6 @@ button.addEventListener("mousemove", (e) => {
   button.style.setProperty("--y", y + "px");
 });
 
-const inputList = document.querySelectorAll('input');
 
 // ---- Update display card when input has value ----
 function syncInputToDisplay(input){
@@ -61,3 +62,46 @@ function formatCardholderName(value) {
   return value.toUpperCase();
 }
 
+
+// ---- Prevent input from accepting specific chars ----
+const invalidNumberChars = [
+  "-", "+", "e", ".", ",", " "
+];
+
+inputList.forEach(item => {
+
+// Prevent input of invalid characters
+item.addEventListener('keydown', e => {
+  const isInvalidLetter = !/[a-zA-Z\s]/.test(e.key) && e.key !== "Backspace";
+  
+  // Prevent numeric and special characters
+  if (item.id === 'cardholder-name'){    
+    if (isInvalidLetter){
+      e.preventDefault();
+    }
+  } else {
+    // Prevent invalid characters
+    if (invalidNumberChars.includes(e.key) || !/\d/.test(e.key) && e.key !== "Backspace") {
+      e.preventDefault();
+    }
+  }
+})
+  
+  // Prevent pasting of invalid characters
+item.addEventListener('paste', e => {
+
+  // Prevent pasting of numeric and special characters
+  if (item.id === 'cardholder-name'){
+    let paste = (e.clipboardData || window.clipboardData).getData('text');
+      if (/[^a-zA-Z\s]/.test(paste)) {
+        e.preventDefault();
+      }
+  } else {
+    let paste = (e.clipboardData || window.clipboardData).getData('text');
+      if (/\D/.test(paste)) {
+        e.preventDefault();
+      }
+  }
+})
+
+})
