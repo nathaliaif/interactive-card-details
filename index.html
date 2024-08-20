@@ -10,6 +10,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script
+  src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+  defer
+></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -46,7 +50,7 @@
         <!-- <span class="error-message" id="error-cardholder-name">wrong</span> -->
         
         <label for="card-number">Card Number</label>
-        <input type="text" id="card-number" placeholder="e.g. 1234 5678 9123 0000" class="form-card__input-number" maxlength="16">
+        <input type="text" pattern="[0-9\s]{13,19}" id="card-number" placeholder="e.g. 1234 5678 9123 0000" class="form-card__input-number" maxlength="16">
         <!-- <span class="error-message" id="error-card-number">mas</span> -->
         
         <div class="form__double-info">
@@ -63,7 +67,7 @@
           </div>
         </div>
     
-        <a class="button cursor-gradient-tracking"><span>Confirm</span></a>
+        <a class="button cursor-gradient-tracking" id="btn-confirm"><span>Confirm</span></a>
       </form>
   
       <!-- Completed state start -->
@@ -71,7 +75,7 @@
          <img src="./images/icon-complete.svg" alt="">
         <h1>Thank you!</h1>
         <p>We've added your card details</p>
-        <a href="" class="button">Continue</a>
+        <a class="button" id="btn-continue">Continue</a>
        </div>
     </div>
   </main>

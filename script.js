@@ -4,6 +4,11 @@ const inputCvc = document.getElementById('card-cvc');
 const flipCard = document.querySelector('.flip-card-inner');
 const cardMain = document.querySelector('.card-main');
 
+const formContainer = document.querySelector('form');
+const continueContainer = document.querySelector('.complete-container');
+
+const btnConfirm = document.getElementById('btn-confirm');
+const btnContinue = document.getElementById('btn-continue');
 
 // ---- Update display card when input has value ----
 function syncInputToDisplay(input){
@@ -110,3 +115,25 @@ inputCvc.addEventListener('focus', () => {
 inputCvc.addEventListener('blur', () => {
   cardMain.classList.remove('flipped');
 });
+
+
+// ---- Verify text inputs ----
+btnConfirm.addEventListener('click', () => {
+  gsap.fromTo(formContainer, {opacity: 1}, {duration: 0.5, opacity: 0, ease: 'power3.out'});
+  
+  setTimeout(() => {
+    gsap.fromTo(continueContainer, {opacity: 0}, {duration: 0.5, opacity: 1, ease: 'power3.out'});
+    formContainer.style.display = 'none';
+    continueContainer.style.display = 'flex';
+    }, 400)
+})
+
+btnContinue.addEventListener('click', () => {
+  gsap.to(continueContainer, {duration: 0.5, opacity: 0, ease: "power3.out"});
+    
+    setTimeout(() => {
+        gsap.fromTo(formContainer, {opacity: 0}, {duration: 0.5, opacity: 1, ease: 'power3.out'});
+        formContainer.style.display = 'flex';
+        continueContainer.style.display = 'none';
+    }, 400)
+})
