@@ -59,7 +59,7 @@ inputList.forEach(input => {
   });
 })
 
-// Formart value display on card
+// Format value display on card
 function formatCardNumber(value) {
   return value.replace(/(\d{4})(?=\d)/g, '$1 ');
 }
