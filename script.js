@@ -78,7 +78,7 @@ inputList.forEach(item => {
 
 // Prevent input of invalid characters
 item.addEventListener('keydown', e => {
-  const isInvalidLetter = !/[a-zA-Z\s]/.test(e.key) && e.key !== "Backspace";
+  const isInvalidLetter = !/[a-zA-Z\s]/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab";
   
   // Prevent numeric and special characters
   if (item.id === 'cardholder-name'){    
@@ -87,7 +87,7 @@ item.addEventListener('keydown', e => {
     }
   } else {
     // Prevent invalid characters
-    if (invalidNumberChars.includes(e.key) || !/\d/.test(e.key) && e.key !== "Backspace") {
+    if (invalidNumberChars.includes(e.key) || !/^\d+$/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab") {
       e.preventDefault();
     }
   }
