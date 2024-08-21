@@ -33,14 +33,9 @@ function syncInputToDisplay(input){
         case 'cardholder-name':
           formattedValue = formatCardholderName(input.value);
         break;
-      case 'expiration-month':
-      case 'expiration-year':
-      case 'card-cvc':
-        formattedValue = input.value;
-        break;
       default: 
         formattedValue = input.value;
-        defaultValue = '';
+        break;
     }
 
     displayElement.textContent = formattedValue || displayDefaultValue[input.id];
