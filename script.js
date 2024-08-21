@@ -6,6 +6,7 @@ const cardMain = document.querySelector('.card-main');
 
 const formContainer = document.querySelector('form');
 const continueContainer = document.querySelector('.complete-container');
+const errorMessageList = document.querySelectorAll('.error-message');
 
 const btnConfirm = document.getElementById('btn-confirm');
 const btnContinue = document.getElementById('btn-continue');
@@ -122,21 +123,71 @@ inputCvc.addEventListener('blur', () => {
   cardMain.classList.remove('flipped');
 });
 
+function clearAllErrorMessages() {
+  errorMessageList.forEach(item => {
+    item.style.display = 'none';
+    item.textContent = '';
+  })
+
+  inputList.forEach(item => {
+    item.classList.remove('error');
+  })
+}
 
 // ---- Verify text inputs ----
 btnConfirm.addEventListener('click', () => {
-  gsap.fromTo(formContainer, {opacity: 1}, {duration: 0.5, opacity: 0, ease: 'power3.out'});
-  
-  setTimeout(() => {
-    gsap.fromTo(continueContainer, {opacity: 0}, {duration: 0.5, opacity: 1, ease: 'power3.out'});
-    formContainer.style.display = 'none';
-    continueContainer.style.display = 'flex';
-    }, 400)
+  let isInputsValid = true;
+
+  // Checks each input for invalid value
+  inputList.forEach(item => {
+    const errorMessage = Array.from(errorMessageList).find(em => em.id === `error-${item.id}`);
+    
+    if (item.value === ''){
+      showMessage('blank'); 
+    } else if (item.validity.patternMismatch && item.id !== 'cardholder-name') {
+      showMessage('charNumber');
+    } else {
+      clearMessage();
+    }
+
+    function showMessage(type){
+      const messageType = {
+        blank: "Can't be blank",
+        charNumber: "Number is invalid",
+      }
+
+      errorMessage.style.display = 'block';
+      errorMessage.textContent = messageType[type];
+      item.classList.add('error');
+      isInputsValid = false;
+    }
+
+    function clearMessage() {
+      errorMessage.style.display = 'none';
+      errorMessage.textContent = '';
+      item.classList.remove('error');
+    }
+  })
+
+  // Runs if all inputs are valid
+  if (isInputsValid){
+    clearAllErrorMessages();
+
+    // Animation change contnet
+    gsap.fromTo(formContainer, {opacity: 1}, {duration: 0.5, opacity: 0, ease: 'power3.out'});
+    
+    setTimeout(() => {
+      gsap.fromTo(continueContainer, {opacity: 0}, {duration: 0.5, opacity: 1, ease: 'power3.out'});
+      formContainer.style.display = 'none';
+      continueContainer.style.display = 'flex';
+      }, 400)
+  }
+
 })
 
 btnContinue.addEventListener('click', () => {
   inputList.forEach(input => {
-    input.textContent = '';
+    input.value = '';
     displayBackToDefault(input);
   })
 
